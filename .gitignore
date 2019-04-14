@@ -1,0 +1,16 @@
+
+# OSX
+.DS_STORE
+
+# Static
+
+# Node
+node_modules/
+npm-debug.log
+package-lock.json*
+
+# Tests
+coverage/
+
+# VS Code
+.vs
