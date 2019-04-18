@@ -14,4 +14,4 @@ _Smart listeners for incoming messages. Use pipelines to create a messaging appl
 _Use landbot pre-built events or create your own for your messaging application_
 
 # Examples
-- [VueJS Simple chat](https://git.yexir.com/helloumi/landbot-core/tree/master/docs/examples/vuejs-chat).
+- [VueJS Simple chat](./examples/vuejs-chat/).
