@@ -6,12 +6,13 @@ npm install @landbot/core
 ```
 Import it in your app.
 ```javascript
-import * as Landbot from '@landbot/core';
+//import * as Landbot from '@landbot/core'; // until v1.1.11
+import LandbotCore from '@landbot/core'; // from v1.1.12
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-const core = new Landbot.Core({
+const core = new LandbotCore({
   firebase: firebase, // required
   brandID: 12235, // required
   channelToken: 'H-116929-N86QGRNNY6QCWEU3', // required
