@@ -20,4 +20,4 @@ _Use landbot pre-built events or create your own for your messaging application_
 
 # Examples
 
-- [VueJS Simple chat](./examples/vuejs-chat/).
+- [React Chat App](./examples/react-chat-app/). Basic example of chat application using React and Landbot core
