@@ -1,4 +1,5 @@
 # Messages
+
 A message can be received by a pipeline (see [pipelines](./pipelines.md) for more info) subscription or a `new_message` event listener. On the other hand, a message is sent via `sendMessage` method (see [methods](./methods.md) for more info).
 
 Received message types:
@@ -18,8 +19,11 @@ Sending message types:
 | `file` | Image / File message.
 
 ## Examples
+
 ### Simple text/image messages
+
 Reception:
+
 ```javascript
 { // text
   type: 'text',
@@ -35,6 +39,7 @@ Reception:
 ```
 
 Answer:
+
 ```javascript
 { // text
   type: 'text', // Default
@@ -48,7 +53,9 @@ Answer:
 ```
 
 ### Buttons messages
+
 Reception:
+
 ```javascript
 {
   type: 'dialog',
@@ -61,6 +68,7 @@ Reception:
 ```
 
 Answer:
+
 ```javascript
 {
   type: 'button',
@@ -70,6 +78,7 @@ Answer:
 ```
 
 ## Parameters
+
 Received message parameters:
 | | Description | Default |
 | --- | --- | --- |
