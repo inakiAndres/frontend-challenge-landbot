@@ -1,6 +1,7 @@
 import { Message } from "@landbot/core/dist/src/types";
+import { ChatMessage } from "../lib/types/types"
 
-export function parseMessage(data: Message) {
+export function parseMessage(data: Message) : ChatMessage {
 
   return {
     key: data.key,

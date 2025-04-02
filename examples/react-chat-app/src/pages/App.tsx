@@ -1,35 +1,23 @@
-import { useState, useCallback, useEffect } from "react";
-import { ChatMessage } from '../lib/types/types';
 import ChatHeader from '../components/ChatHeader';
 import MessageList from '../components/MessageList';
 import ChatInput from '../components/ChatInput';
 import { useChatConfig } from '../lib/hooks/useChatConfig';
-import { useLandbotCore } from '../lib/hooks/useLandbotCore';
 import { useScrollToBottom } from '../lib/hooks/useScrollToBottom';
 import { useStyle } from '../lib/hooks/useStyle';
 
-export const App = () => {
-  const [messages, setMessages] = useState<Record<string, ChatMessage>>({});
-  const [input, setInput] = useState("");
-  const { config, loading, error  } = useChatConfig();
-  const core = useLandbotCore(config, setMessages);
-  useStyle(config);
-  useScrollToBottom(messages);
+export const App = () => {  
+  const { loading } = useChatConfig();
 
-  const submit = useCallback(() => {
-    if (input !== "" && core.current) {
-      core.current.sendMessage({ message: input });
-      setInput("");
-    }
-  }, [input, core]);
+  useStyle();
+  useScrollToBottom();
 
   return (
     <section id="landbot-app">
       <div className="chat-container">
         <div className="landbot-chat">
           <ChatHeader loading={loading}/>
-          <MessageList messages={messages} />
-          <ChatInput input={input} setInput={setInput} submit={submit} />
+          <MessageList />
+          <ChatInput />
         </div>
       </div>
     </section>

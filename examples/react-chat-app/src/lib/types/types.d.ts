@@ -6,7 +6,10 @@ export interface ChatMessage {
     type: string;
   }
   
-  export interface ChatConfig {
+export interface ChatConfig {
     [key: string]: any;
   }
-  
+
+export interface MessageListProps {
+    messages: Record<string, ChatMessage>;
+}

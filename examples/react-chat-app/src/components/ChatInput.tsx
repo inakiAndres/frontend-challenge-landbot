@@ -1,15 +1,21 @@
+import { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../lib/store/storeLandbotConfig";
+import { RootState } from "../lib/store/store";
+import { useLandbotCore } from '../lib/hooks/useLandbotCore';
 
-interface ChatInputProps {
-    input: string;
-    setInput: React.Dispatch<React.SetStateAction<string>>;
-    submit: () => void;
-  }
-  
-  const ChatInput = ({ input, setInput, submit }: ChatInputProps) => {
+  const ChatInput = () => {
+    const core = useLandbotCore();
 
     const { config } = useSelector((state: RootState) => state.config);
+
+    const [input, setInput] = useState("");
+
+    const submit = useCallback(() => {
+        if (input !== "" && core.current) {
+          core.current.sendMessage({ message: input });
+          setInput("");
+        }
+      }, [input, core]);
 
     return (
       <div className="landbot-input-container">
