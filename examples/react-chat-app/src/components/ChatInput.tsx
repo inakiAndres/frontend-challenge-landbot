@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../lib/store/storeLandbotConfig";
+
 interface ChatInputProps {
     input: string;
     setInput: React.Dispatch<React.SetStateAction<string>>;
@@ -5,6 +8,9 @@ interface ChatInputProps {
   }
   
   const ChatInput = ({ input, setInput, submit }: ChatInputProps) => {
+
+    const { config } = useSelector((state: RootState) => state.config);
+
     return (
       <div className="landbot-input-container">
         <div className="field">
@@ -18,7 +24,7 @@ interface ChatInputProps {
                   submit();
                 }
               }}
-              placeholder="Type here..."
+              placeholder={config?.text?.text_input_placeholder || "Type here..."}
               type="text"
               value={input}
             />

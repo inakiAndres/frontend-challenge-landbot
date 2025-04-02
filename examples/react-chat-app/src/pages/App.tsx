@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { ChatMessage } from '../lib/types/types';
 import ChatHeader from '../components/ChatHeader';
 import MessageList from '../components/MessageList';
@@ -6,12 +6,14 @@ import ChatInput from '../components/ChatInput';
 import { useChatConfig } from '../lib/hooks/useChatConfig';
 import { useLandbotCore } from '../lib/hooks/useLandbotCore';
 import { useScrollToBottom } from '../lib/hooks/useScrollToBottom';
+import { useStyle } from '../lib/hooks/useStyle';
 
 export const App = () => {
   const [messages, setMessages] = useState<Record<string, ChatMessage>>({});
   const [input, setInput] = useState("");
   const { config, loading, error  } = useChatConfig();
   const core = useLandbotCore(config, setMessages);
+  useStyle(config);
   useScrollToBottom(messages);
 
   const submit = useCallback(() => {

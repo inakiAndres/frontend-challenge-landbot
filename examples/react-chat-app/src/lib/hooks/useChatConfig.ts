@@ -1,33 +1,28 @@
-import { useState, useEffect } from "react";
-import { ConfigProperties } from "@landbot/core/dist/src/types";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setConfigLoading, setConfigSuccess, setConfigError } from "../store/sliceLandbotConfig";
+import { RootState } from "../../lib/store/storeLandbotConfig";
 
-let cachedConfig: ConfigProperties | null = null;
-
-export const useChatConfig = (): { config:  ConfigProperties | null; loading: boolean; error: string | null } => {
-  const [config, setConfig] = useState<ConfigProperties | null>(cachedConfig);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const useChatConfig = () => {
+  const dispatch = useDispatch();
+  const { config, loading, error } = useSelector((state: RootState) => state.config);
 
   useEffect(() => {
     if (config) return;
 
     const fetchData = async () => {
+      dispatch(setConfigLoading());
       try {
         const response = await fetch("https://chats.landbot.io/u/H-441480-B0Q96FP58V53BJ2J/index.json");
         const data = await response.json();
-        setConfig(data);
-        cachedConfig = data;
-        setLoading(false);
+        dispatch(setConfigSuccess(data));
       } catch (err) {
-        setError('Failed to load config.');
-        setLoading(false);
+        dispatch(setConfigError("Failed to load config."));
       }
     };
 
     fetchData();
- 
-  }, [config]);
+  }, [dispatch, config]);
 
   return { config, loading, error };
 };
-
