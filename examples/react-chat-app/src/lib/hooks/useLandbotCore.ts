@@ -15,7 +15,6 @@ export const useLandbotCore = () => {
 
   useEffect(() => {
     if (config) {
-        console.log('klk')
       core.current = new Core(config);
 
       core.current.pipelines.$readableSequence.subscribe((data: Message) => {
