@@ -6,6 +6,7 @@ import { parseMessage, parseMessages } from "../../utils/messageUtils";
 
 export const useLandbotCore = (config: ConfigProperties | null, setMessages: Function) => {
   const core = useRef<Core | null>(null);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
     if (config) {
@@ -17,9 +18,12 @@ export const useLandbotCore = (config: ConfigProperties | null, setMessages: Fun
         }));
       });
 
-      core.current.init().then((data) => {
-        setMessages(parseMessages(data.messages));
-      });
+      if (!isInitialized.current) {
+        core.current.init().then((data) => {
+          setMessages(parseMessages(data.messages));
+          isInitialized.current = true;
+        });
+      }
     }
   }, [config, setMessages]);
 
