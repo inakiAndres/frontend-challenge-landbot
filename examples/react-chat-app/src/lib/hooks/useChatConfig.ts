@@ -4,6 +4,8 @@ import { setConfigLoading, setConfigSuccess, setConfigError } from "../store/sli
 import { RootState } from "../store/store";
 
 export const useChatConfig = () => {
+  const landbotUrl: string = import.meta.env.VITE_LANDBOT_URL;
+
   const dispatch = useDispatch();
   const { config, loading, error } = useSelector((state: RootState) => state.config);
 
@@ -13,7 +15,7 @@ export const useChatConfig = () => {
     const fetchData = async () => {
       dispatch(setConfigLoading());
       try {
-        const response = await fetch("https://chats.landbot.io/u/H-441480-B0Q96FP58V53BJ2J/index.json");
+        const response = await fetch(landbotUrl);
         const data = await response.json();
         dispatch(setConfigSuccess(data));
       } catch (err) {
