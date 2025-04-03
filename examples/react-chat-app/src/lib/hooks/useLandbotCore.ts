@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import Core from "@landbot/core";
 import { Message } from "@landbot/core/dist/src/types";
 import { useDispatch, useSelector } from "react-redux";
-import { setMessages, addMessage } from "../store/sliceMessages";
+import { setMessages, addMessage, setRevisitMessages } from "../store/sliceMessages";
 import { parseMessage, parseMessages } from "../../utils/messageUtils";
 import { RootState } from "../store/store";
 
@@ -15,6 +15,7 @@ export const useLandbotCore = () => {
 
   useEffect(() => {
     if (config) {
+      dispatch(setRevisitMessages(parseMessage(config?.revisit[0])));
       core.current = new Core(config);
 
       core.current.pipelines.$readableSequence.subscribe((data: Message) => {

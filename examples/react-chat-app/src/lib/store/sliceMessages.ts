@@ -3,6 +3,7 @@ import { ChatMessage, MessageListProps } from '../types/types';
 
 const initialState: MessageListProps = {
   messages: {},
+  revisitMessages: {}
 };
 
 const messagesSlice = createSlice({
@@ -16,9 +17,13 @@ const messagesSlice = createSlice({
       const message = action.payload;
       state.messages[message.key] = message;
     },
+    setRevisitMessages: (state, action: PayloadAction<ChatMessage>) => {
+      const message = action.payload;
+      state.revisitMessages["revisit"] = message;
+    },
   },
 });
 
-export const { setMessages, addMessage } = messagesSlice.actions;
+export const { setMessages, addMessage, setRevisitMessages } = messagesSlice.actions;
 
 export default messagesSlice.reducer;

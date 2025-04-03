@@ -4,6 +4,8 @@ export interface ChatMessage {
     author: "bot" | "user";
     timestamp: number;
     type: string;
+    buttons?: Array;
+    payloads?: Array;
   }
   
 export interface ChatConfig {
@@ -12,4 +14,5 @@ export interface ChatConfig {
 
 export interface MessageListProps {
     messages: Record<string, ChatMessage>;
+    revisitMessages: Record<string, ChatMessage>;
 }

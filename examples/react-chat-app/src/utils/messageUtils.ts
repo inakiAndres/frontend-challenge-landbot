@@ -8,7 +8,9 @@ export function parseMessage(data: Message) : ChatMessage {
     text: data.title || data.message,
     author: data.samurai !== undefined ? "bot" : "user",
     timestamp: data.timestamp,
-    type: data.type
+    type: data.type,
+    buttons: data.buttons,
+    payloads: data.payloads
   };
 }
 

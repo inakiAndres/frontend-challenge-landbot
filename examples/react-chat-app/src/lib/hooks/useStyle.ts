@@ -20,10 +20,8 @@ export const useStyle = () => {
         root.style.setProperty("--bg-image", `url(${config?.design?.background_image})`);
         root.style.setProperty("--header-bg-color", config?.design?.header_background_color);
         root.style.setProperty("--header-text-color", config?.design?.header_text);
-
-        root.style.setProperty("--input-bg-color", config?.design?.form_inputs_background_color);
-        root.style.setProperty("--input-border-color", config?.design?.form_inputs_border_color);
-        root.style.setProperty("--input-text-color", config?.design?.form_inputs_color);
+        root.style.setProperty("--input-bg-color", config?.design?.textarea_background);
+        root.style.setProperty("--input-text-color", config?.design?.textarea_text);
           
     }, [config]);
 
